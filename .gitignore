@@ -1,0 +1,6 @@
+config.json
+generate.bat
+
+build/
+ext/*/
+!ext/README.txt
