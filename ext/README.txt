@@ -1,0 +1,2 @@
+Download the wxWidgets headers and libraries from the `Release` tab of the wxWidgets repo and extract them to `./wxWidgets`
+On Visual Studio, rename the `/lib/vcXXX_dll/` to `/lib/vc_dll/`, as FindwxWidgets.cmake does not seem to find wxWidgets with it.
