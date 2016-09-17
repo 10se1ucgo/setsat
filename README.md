@@ -7,10 +7,10 @@ A(n eventually) cross-platform saturation/digital vibrance toggle for AMD and NV
 
 
 |               | **AMD** | **NVIDIA** | **Intel** | 
-| ------------- | ------- | ---------- | --------- |
-| **Windows**   | Soon<sup>TM</sup> | :heavy_check_mark:  |           |
-| **GNU/Linux** |         |            |           |
-| **OSX**       |         |            |           |
+| :-----------: | :-----: | :--------: | :-------: |
+| **Windows**   | Soon:tm: | :heavy_check_mark: | :x: |
+| **GNU/Linux** | :x: | :x: | :x: |
+| **OSX**       | :x: | :x: | :x: |
 
 
 # LICENSE
