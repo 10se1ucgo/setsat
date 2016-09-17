@@ -3,6 +3,14 @@
 
 A(n eventually) cross-platform saturation/digital vibrance toggle for AMD and NVIDIA GPUs.
 
+# COMPATIBILITY
+
+
+|               | **AMD** | **NVIDIA** | **Intel** | 
+| ------------- | ------- | ---------- | --------- |
+| **Windows**   | Soon<sup>TM</sup> | :heavy_check_mark:  |           |
+| **GNU/Linux** |         |            |           |
+| **OSX**       |         |            |           |
 
 
 # LICENSE
