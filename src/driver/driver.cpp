@@ -63,7 +63,7 @@ namespace setsat {
             // Unknown support: ayy lmao
             case GPUVendor::Unknown:
             default: 
-                return nullptr;
+                return std::move(std::make_unique<UnknownDriver>());
         }
     }
 }

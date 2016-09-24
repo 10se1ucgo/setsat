@@ -19,7 +19,6 @@ along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <sstream>
 #include <iostream>
-#include <iomanip>
 
 
 #ifdef __WINDOWS__

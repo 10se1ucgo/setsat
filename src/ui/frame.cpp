@@ -118,7 +118,7 @@ MainFrame::MainFrame(const wxString &title): wxFrame(nullptr, wxID_ANY, title),
     //{ Menus
     wxMenu *file_menu = new wxMenu();
     wxMenuItem *file_settings = file_menu->Append(wxID_SETUP, _("&Settings"), _("SetSat Setup"));
-    wxMenuItem *file_exit = file_menu->Append(wxID_SETUP, _("&Exit"), _("Quit SetSat"));
+    wxMenuItem *file_exit = file_menu->Append(wxID_EXIT, _("&Exit"), _("Quit SetSat"));
 
     wxMenu *help_menu = new wxMenu();
     wxMenuItem *help_about = help_menu->Append(wxID_ABOUT, _("&About"), _("About SetSat"));
@@ -133,10 +133,10 @@ MainFrame::MainFrame(const wxString &title): wxFrame(nullptr, wxID_ANY, title),
     //}
 
     this->Bind(wxEVT_BUTTON, &MainFrame::on_start_stop, this, ss_button->GetId());
-    this->Bind(wxEVT_ICONIZE, &MainFrame::on_minimize, this);
     this->Bind(wxEVT_SLIDER, &MainFrame::on_slide, this, normal_slider->GetId());
+    this->Bind(wxEVT_ICONIZE, &MainFrame::on_minimize, this);
     tray_icon->Bind(wxEVT_TASKBAR_LEFT_UP, &MainFrame::on_tray_click, this);
-    tray_icon->Bind(wxEVT_MENU, &MainFrame::on_exit, this, wxID_CLOSE);
+    tray_icon->Bind(wxEVT_MENU, &MainFrame::on_exit, this, wxID_EXIT);
 }
 
 void MainFrame::on_start_stop(wxCommandEvent &event) {

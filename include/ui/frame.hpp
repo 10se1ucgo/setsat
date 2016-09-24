@@ -27,7 +27,7 @@ class MainFrameTrayIcon: public wxTaskBarIcon {
 protected:
     wxMenu* CreatePopupMenu() override {
         wxMenu *menu = new wxMenu();
-        menu->Append(wxID_CLOSE, wxT("Exit"));
+        menu->Append(wxID_EXIT, wxT("Exit"));
         return menu;
     }
 };

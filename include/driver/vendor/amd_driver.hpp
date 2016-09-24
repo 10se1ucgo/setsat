@@ -21,10 +21,16 @@ along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 namespace setsat {
-    struct Display {
-        int adapter_index, display_index;
-        std::string name;
-    };
+    namespace detail {
+        struct Adapter {
+            std::string name;
+            int index;
+            std::vector<int> displays;
+
+            Adapter(const std::string &name, int index, int display_count) : name(name), index(index), displays(display_count) {};
+        };
+    }
+
 
     class AMDDriver : public IDriver {
     public:
@@ -41,6 +47,6 @@ namespace setsat {
         std::string get_string() override;
     private:
         lib_handle libadl;
-        std::vector<Display> displays;
+        std::vector<detail::Adapter> adapters;
     };
 }

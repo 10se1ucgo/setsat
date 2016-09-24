@@ -42,7 +42,21 @@ namespace setsat {
         virtual int get_sat(SaturationInfo &info, const std::string &display_name) = 0;
         virtual int get_sat(SaturationInfo &info, int index = 0) = 0;
 
-        virtual GPUVendor get_vendor() { return GPUVendor::Unknown; }
-        virtual std::string get_string() { return "Unknown"; }
+        virtual GPUVendor get_vendor() = 0;
+        virtual std::string get_string() = 0;
+    };
+
+    class UnknownDriver: public IDriver {
+    public:
+        UnknownDriver() { }
+        ~UnknownDriver() { }
+        void set_sat(int new_sat, const std::string &display_name) override { }
+        void set_sat(int new_sat, int index = 0) override { }
+
+        int get_sat(SaturationInfo &info, const std::string &display_name) override { return 1; }
+        int get_sat(SaturationInfo &info, int index = 0) override { return 1; }
+
+        GPUVendor get_vendor() override { return GPUVendor::Unknown; }
+        std::string get_string() override { return "Unknown"; }
     };
 }
