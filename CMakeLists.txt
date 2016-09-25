@@ -30,10 +30,7 @@ find_package(wxWidgets COMPONENTS core base adv xml qa REQUIRED)
 include(${wxWidgets_USE_FILE})
 
 if(UNIX)
-    find_package(X11)
-    if(X11_FOUND)
-        option(ENABLE_X11 "Enable X11 support. Required for NVIDIA GPUs on Linux." ON)
-    endif(X11_FOUND)
+    find_package(X11 REQUIRED)
 endif(UNIX)
 
 
@@ -62,11 +59,10 @@ source_group("Resources" FILES ${RC_FILES})
 add_executable(setsat ${UI_SRC} ${UI_INC} ${WD_SRC} ${WD_INC} ${DRIVER_SRC} ${DRIVER_INC} ${RC_FILES})
 target_link_libraries(setsat ${wxWidgets_LIBRARIES})
 
-if(X11_FOUND AND ENABLE_X11)
+if(UNIX)
     target_link_libraries(setsat ${X11_LIBRARIES})
     include_directories({X11_INCLUDE_DIR})
-    set_target_properties(setsat PROPERTIES COMPILE_DEFINITIONS "SETSAT_ENABLEX11")
-endif(X11_FOUND AND ENABLE_X11)
+endif(UNIX)
 
 if(WIN32)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
