@@ -19,15 +19,17 @@ along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 #include "wx/stackwalk.h"
 #include "wx/debugrpt.h"
 
-class MainApp : public wxApp {
-public:
-    MainApp();
-    bool OnInit() override;
-    int OnExit() override;
-    bool OnExceptionInMainLoop() override;
-    void OnFatalException() override;
-    // void OnUnhandledException() override;
-private:
-    wxSingleInstanceChecker *checker;
-    void generate_debug_report(wxDebugReport::Context ctx);
-};
+namespace setsat {
+    class MainApp : public wxApp {
+    public:
+        MainApp();
+        bool OnInit() override;
+        int OnExit() override;
+        bool OnExceptionInMainLoop() override;
+        void OnFatalException() override;
+        // void OnUnhandledException() override;
+    private:
+        wxSingleInstanceChecker *checker;
+        void generate_debug_report(wxDebugReport::Context ctx) const;
+    };
+}

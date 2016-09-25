@@ -1,6 +1,12 @@
+icon.png
+icon2.png
 config.json
 generate.bat
 
+cmake/
+test/
 build/
 ext/*/
 !ext/README.txt
+
+*.aps

@@ -23,44 +23,64 @@ along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 #include "wx/spinctrl.h"
 #include "wx/taskbar.h"
 
-class MainFrameTrayIcon: public wxTaskBarIcon {
-protected:
-    wxMenu* CreatePopupMenu() override {
-        wxMenu *menu = new wxMenu();
-        menu->Append(wxID_EXIT, wxT("Exit"));
-        return menu;
-    }
-};
+namespace setsat {
+    class MainFrameTrayIcon : public wxTaskBarIcon {
+    protected:
+        wxMenu* CreatePopupMenu() override {
+            wxMenu *menu = new wxMenu();
+            menu->Append(wxID_EXIT, wxT("Exit"));
+            return menu;
+        }
+    };
 
 
-class MainFrame : public wxFrame {
-public:
-    MainFrame(const wxString &title);
-private:
-    wxPanel *panel;
-    wxSpinCtrl *refresh_rate;
-    wxStaticText *normal_text;
-    wxStaticText *refresh_text;
-    wxStaticText *ingame_text;
-    wxSlider *normal_slider;
-    wxSlider *ingame_slider;
-    wxCheckBox *on_boot_box;
-    wxCheckBox *to_tray_box;
-    wxButton *ss_button;
-    wxIcon normal_icon;
-    wxIcon dimmed_icon;
-    std::unique_ptr<MainFrameTrayIcon> tray_icon;
-    std::unique_ptr<setsat::IDriver> driver;
-    std::unique_ptr<setsat::Watchdog> watchdog;
-    nlohmann::json config;
+    class Config {
+    public:
+        Config(const std::string &file_name);
+        ~Config() { this->save(); }
 
-    void on_start_stop(wxCommandEvent &event);
-    void on_exit(wxCommandEvent &);
-    void on_about(wxCommandEvent &);
-    void on_slide(wxCommandEvent &);
-    // void on_normal_slide(wxCommandEvent &);
-    void on_minimize(wxIconizeEvent &event);
-    void on_tray_click(wxTaskBarIconEvent &event);
+        void create();
+        bool read();
+        bool save() const;
 
-    void on_window_change(std::string process_name, std::string window_title, std::string display_name);
-};
+        bool match_process(const std::string& proc_name) const;
+        bool match_title(const std::string& window_name) const;
+        std::pair<int, int> get_values();
+        void set_values(int normal_level, int ingame_level);
+    private:
+        std::string file_name;
+        nlohmann::json cfg_json;
+    };
+
+    class MainFrame : public wxFrame {
+    public:
+        MainFrame(const wxString &title);
+    private:
+        wxPanel *panel;
+        wxSpinCtrl *refresh_rate;
+        wxStaticText *normal_text;
+        wxStaticText *refresh_text;
+        wxStaticText *ingame_text;
+        wxSlider *normal_slider;
+        wxSlider *ingame_slider;
+        wxCheckBox *on_boot_box;
+        wxCheckBox *to_tray_box;
+        wxButton *ss_button;
+        wxIcon normal_icon;
+        wxIcon dimmed_icon;
+        std::unique_ptr<MainFrameTrayIcon> tray_icon;
+        std::unique_ptr<setsat::IDriver> driver;
+        std::unique_ptr<setsat::Watchdog> watchdog;
+        Config config;
+
+        void on_start_stop(wxCommandEvent &event);
+        void on_exit(wxCommandEvent &);
+        void on_about(wxCommandEvent &);
+        void on_slide(wxCommandEvent &);
+        // void on_normal_slide(wxCommandEvent &);
+        void on_minimize(wxIconizeEvent &event);
+        void on_tray_click(wxTaskBarIconEvent &event);
+
+        void on_window_change(std::string process_name, std::string window_title, std::string display_name) const;
+    };
+}
