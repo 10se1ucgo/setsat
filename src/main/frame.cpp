@@ -193,7 +193,7 @@ namespace setsat {
         tray_icon->Bind(wxEVT_MENU, &MainFrame::on_exit, this, wxID_EXIT);
     }
 
-    void MainFrame::on_start_stop(wxCommandEvent &event) {
+    void MainFrame::on_start_stop(wxCommandEvent &) {
         if (!watchdog || !driver) {
             tray_icon->SetIcon(normal_icon, this->GetTitle());
             ss_button->SetLabel("Stop");

@@ -1,19 +1,17 @@
-#[[
-This file is part of setsat.
+# This file is part of setsat.
 
-setsat is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+# setsat is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-setsat is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+# setsat is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with setsat.  If not, see <http://www.gnu.org/licenses/>.
-]]
+# You should have received a copy of the GNU General Public License
+# along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 cmake_minimum_required(VERSION 3.6)
 project(setsat)
 
@@ -34,8 +32,8 @@ if(UNIX)
 endif(UNIX)
 
 
-file(GLOB UI_SRC src/ui/*.c src/ui/*.cpp)
-file(GLOB UI_INC include/ui/*.h include/ui/*.hpp)
+file(GLOB MAIN_SRC src/main/*.c src/main/*.cpp)
+file(GLOB MAIN_INC include/main/*.h include/main/*.hpp)
 file(GLOB WD_SRC src/watchdog/*.c src/watchdog/*.cpp)
 file(GLOB WD_INC include/watchdog/*.h include/watchdog/*.hpp)
 file(GLOB_RECURSE DRIVER_SRC src/driver/*.c src/driver/*.cpp)
@@ -46,17 +44,17 @@ else(WIN32)
 	set(RC_FILES include/resources/icon.xpm)
 endif(WIN32)
 
-source_group("Source Files\\UI" FILES ${UI_SRC})
+source_group("Source Files\\Main" FILES ${MAIN_SRC})
 source_group("Source Files\\Watchdog" FILES ${WD_SRC})
 source_group("Source Files\\Driver" FILES ${DRIVER_SRC})
-source_group("Headers\\UI" FILES ${UI_INC})
+source_group("Headers\\Main" FILES ${MAIN_INC})
 source_group("Headers\\Watchdog" FILES ${WD_INC})
 source_group("Headers\\Driver" FILES ${DRIVER_INC})
 source_group("Resources" FILES ${RC_FILES})
 
 
 
-add_executable(setsat ${UI_SRC} ${UI_INC} ${WD_SRC} ${WD_INC} ${DRIVER_SRC} ${DRIVER_INC} ${RC_FILES})
+add_executable(setsat ${MAIN_SRC} ${MAIN_INC} ${WD_SRC} ${WD_INC} ${DRIVER_SRC} ${DRIVER_INC} ${RC_FILES})
 target_link_libraries(setsat ${wxWidgets_LIBRARIES})
 
 if(UNIX)
