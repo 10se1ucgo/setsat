@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "ui/frame.hpp"
+#include "main/frame.hpp"
 
 #ifdef __WINDOWS__
   #include "resources/resource.h"

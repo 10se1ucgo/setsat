@@ -21,8 +21,8 @@ along with setsat.  If not, see <http://www.gnu.org/licenses/>.
 #include "json.hpp"
 #include "wx/filename.h"
 
-#include "ui/app.hpp"
-#include "ui/frame.hpp"
+#include "main/app.hpp"
+#include "main/frame.hpp"
 
 namespace setsat {
     MainApp::MainApp() : checker(new wxSingleInstanceChecker) {
